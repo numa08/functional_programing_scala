@@ -1,15 +1,9 @@
 def drop[A](l : List[A], n : Int) : List[A] = {
-  @annotation.tailrec
-  def loop[A](i : Int, lx : List[A]) : List[A] = {
-    if(i >= n) lx
-    else {
-      lx match {
-      case Nil => Nil
-      case Cons(_, t) => loop(i+1, t)
-      }
-    }
+  if (n <= 0) l
+  else l match {
+    case Nil => Nil
+    case Cons(_, t) => drop(t, n - 1)
   }
-  loop(0, l)
 }
 
 def testDrop() : Unit = {
