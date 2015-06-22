@@ -1,0 +1,22 @@
+def drop[A](l : List[A], n : Int) : List[A] = {
+  @annotation.tailrec
+  def loop[A](i : Int, l : List[A]) : List[A] = {
+    println(i)
+    if(i >= n) l
+    else {
+      l match {
+      case Nil => Nil
+      case Cons(_, t) => loop(i+1, l)
+      }
+    }
+  }
+  val r = loop(0, l)
+  println(r)
+  r
+}
+
+def testDrop() : Unit = {
+  //println(s"drop(List(1,2,3) 0) == List(1,2,3) ${drop(List(1,2,3), 0) == List(1,2,3)}")
+  println(s"drop(List(1,2,3,4,5), 3) == List(4,5) ${drop(List(1,2,3,4,5), 3) == List(4,5)}")
+  // println(s"drop(List(a,b,c), 5) == Nil ${drop(List("a","b","c"), 5) == Nil}")
+}
