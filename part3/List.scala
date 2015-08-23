@@ -45,4 +45,10 @@ object List {
       case Nil => a2
       case Cons(h, t) => Cons(h, append(t, a2))
     }
+
+  def foldLeft[A, B](as: List[A], z: B)(f: (B, A) => B) : B =
+    as match {
+      case Nil => z
+      case Cons(x, xs) => foldLeft(xs, f(z, x))(f)
+    }
 }
