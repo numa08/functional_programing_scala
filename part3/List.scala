@@ -57,4 +57,17 @@ object List {
     def mapTest() {
       println(s"map(List(1,2,3,4,5)(_ * 2)) == List(2,4,6,8,10) : ${map(List(1,2,3,4,5))(_ * 2) == List(2,4,6,8,10)}")
     }
+
+    def filter[A](as : List[A])(f : A => Boolean) : List[A] = {
+      def loop(as : List[A], ns : List[A]) : List[A] = as match {
+        case Nil => ns
+        case Cons(a, l) if (f(a)) => Cons(a, loop(l, ns))
+        case Cons(a, l) => loop(l, ns)
+      }
+      loop(as, List[A]())
+    }
+
+    def filterTest() {
+      println(s"filter(List(1,2,3,4,5,6,7,8))(_ % 2 == 0) ${filter(List(1,2,3,4,5,6,7,8))(_ % 2 == 0)}")
+    }
 }
