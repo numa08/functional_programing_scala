@@ -51,4 +51,10 @@ object List {
       case Nil => z
       case Cons(x, xs) => foldLeft(xs, f(x, z))(f)
     }
+
+    def map[A, B](as : List[A])(f : A => B) : List[B] = foldRight(as, List[B]())((a, l) => Cons(f(a), l))
+
+    def mapTest() {
+      println(s"map(List(1,2,3,4,5)(_ * 2)) == List(2,4,6,8,10) : ${map(List(1,2,3,4,5))(_ * 2) == List(2,4,6,8,10)}")
+    }
 }
