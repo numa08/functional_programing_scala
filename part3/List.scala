@@ -70,4 +70,6 @@ object List {
     def filterTest() {
       println(s"filter(List(1,2,3,4,5,6,7,8))(_ % 2 == 0) ${filter(List(1,2,3,4,5,6,7,8))(_ % 2 == 0)}")
     }
+
+    def flatMap[A, B](as: List[A])(f: A => List[B]): List[B] = foldRight(as, List[B]())((a, l) => append(f(a), l))
 }
